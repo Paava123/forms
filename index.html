@@ -36,7 +36,7 @@
       <div class="inlineInp">
         <div class="column w50">
           <div class="inline">
-            <p class="label">First name</p>
+            <label class="label">First name</label>
             <p class="green">*</p>
           </div>
           <input type="text" class="inp" id="first" />
@@ -44,7 +44,7 @@
         </div>
         <div class="column w50">
           <div class="inline">
-            <p class="label">Last name</p>
+            <label class="label">Last name</label>
             <p class="green">*</p>
           </div>
           <input type="text" class="inp" id="last" />
@@ -55,7 +55,7 @@
 
       <div class="column">
         <div class="inline">
-          <p class="label">Email Address</p>
+          <label class="label">Email Address</label>
           <p class="green">*</p>
         </div>
         <input type="text" id="email" />
@@ -71,8 +71,14 @@
         </div>
         <div class="inlineInp">
           <div class="qur w50">
-            <label for="query1" onclick="RadChange(1, 2)" class="inline">
-              <input type="radio" name="query" id="query1" class="radio" />
+            <label class="inline">
+              <input
+                type="radio"
+                name="query"
+                id="query1"
+                class="radio"
+                onclick="RadChange(1, 2)"
+              />
               <img
                 src="assets/images/icon-radio-selected.svg"
                 class="antirad hidden"
@@ -83,8 +89,14 @@
             </label>
           </div>
           <div class="qur w50">
-            <label for="query2" onclick="RadChange(2, 1)" class="inline">
-              <input type="radio" name="query" id="query2" class="radio" />
+            <label class="inline">
+              <input
+                type="radio"
+                name="query"
+                id="query2"
+                class="radio"
+                onclick="RadChange(2, 1)"
+              />
               <img
                 src="assets/images/icon-radio-selected.svg"
                 class="antirad hidden"
@@ -100,7 +112,7 @@
 
       <div class="column">
         <div class="inline">
-          <p class="label">Message</p>
+          <label class="label">Message</label>
           <p class="green">*</p>
         </div>
         <textarea id="text"></textarea>
@@ -130,7 +142,7 @@
           To submit this form, please consent to being contacted
         </p>
       </div>
-      <button onclick="Submit()">Submit</button>
+      <button type="button" onclick="Submit()">Submit</button>
     </main>
 
     <script>
