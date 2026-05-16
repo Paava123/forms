@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Contact form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="sent hidden" id="sent">
+      <div class="inline">
+        <img src="assets/images/icon-success-check.svg" alt="success" />
+        <p class="contact">Message Sent!</p>
+      </div>
+      <p class="label">
+        Thanks for completing the form. We'll be in touch soon!
+      </p>
+    </div>
+    <main class="main-cont">
+      <h1 class="contact">Contact Us</h1>
+
+      <div class="inlineInp">
+        <div class="column w50">
+          <div class="inline">
+            <p class="label">First name</p>
+            <p class="green">*</p>
+          </div>
+          <input type="text" class="inp" id="first" />
+          <p class="req hidden" id="firstreq">This field is required</p>
+        </div>
+        <div class="column w50">
+          <div class="inline">
+            <p class="label">Last name</p>
+            <p class="green">*</p>
+          </div>
+          <input type="text" class="inp" id="last" />
+
+          <p class="req hidden" id="lastreq">This field is required</p>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="inline">
+          <p class="label">Email Address</p>
+          <p class="green">*</p>
+        </div>
+        <input type="text" id="email" />
+        <p class="req hidden" id="emailreq">
+          Please enter a valid email address
+        </p>
+      </div>
+
+      <div class="column">
+        <div class="inline">
+          <p class="label">Query Type</p>
+          <p class="green">*</p>
+        </div>
+        <div class="inlineInp">
+          <div class="qur w50">
+            <label for="query1" onclick="RadChange(1, 2)" class="inline">
+              <input type="radio" name="query" id="query1" class="radio" />
+              <img
+                src="assets/images/icon-radio-selected.svg"
+                class="antirad hidden"
+                id="img1"
+                alt="radio"
+              />
+              General Enquiry
+            </label>
+          </div>
+          <div class="qur w50">
+            <label for="query2" onclick="RadChange(2, 1)" class="inline">
+              <input type="radio" name="query" id="query2" class="radio" />
+              <img
+                src="assets/images/icon-radio-selected.svg"
+                class="antirad hidden"
+                id="img2"
+                alt="radio"
+              />
+              General Enquiry
+            </label>
+          </div>
+        </div>
+        <p class="req hidden" id="querreq">Please select a query type</p>
+      </div>
+
+      <div class="column">
+        <div class="inline">
+          <p class="label">Message</p>
+          <p class="green">*</p>
+        </div>
+        <textarea id="text"></textarea>
+        <p class="req hidden" id="textreq">This field is required</p>
+      </div>
+      <div class="column">
+        <label for="checkbox" class="inline custom-checkbox">
+          <input
+            type="checkbox"
+            name="checkbox"
+            id="checkbox"
+            class="checkbox"
+          />
+
+          <span class="box">
+            <img
+              class="check"
+              src="assets/images/icon-checkbox-check.svg"
+              alt=""
+            />
+          </span>
+
+          <p>I consent to being contacted by the team</p>
+        </label>
+
+        <p class="req hidden" id="checkreq">
+          To submit this form, please consent to being contacted
+        </p>
+      </div>
+      <button onclick="Submit()">Submit</button>
+    </main>
+
+    <script>
+      function RadChange(number, num) {
+        document.getElementById("img" + number).classList.remove("hidden");
+        document.getElementById("img" + num).classList.add("hidden");
+      }
+
+      function Submit() {
+        let err = 0;
+        if (!document.getElementById("first").value) {
+          document.getElementById("firstreq").classList.remove("hidden");
+          err++;
+        } else {
+          document.getElementById("firstreq").classList.add("hidden");
+        }
+
+        if (!document.getElementById("last").value) {
+          document.getElementById("lastreq").classList.remove("hidden");
+          err++;
+        } else {
+          document.getElementById("lastreq").classList.add("hidden");
+        }
+
+        if (!document.getElementById("email").value.includes("@")) {
+          document.getElementById("emailreq").classList.remove("hidden");
+          err++;
+        } else {
+          document.getElementById("emailreq").classList.add("hidden");
+        }
+
+        if (
+          (!document.getElementById("query1").checked &&
+            document.getElementById("query2").checked) ||
+          (document.getElementById("query1").checked &&
+            !document.getElementById("query2").checked)
+        ) {
+          document.getElementById("querreq").classList.add("hidden");
+        } else {
+          document.getElementById("querreq").classList.remove("hidden");
+          err++;
+        }
+
+        if (!document.getElementById("text").value) {
+          document.getElementById("textreq").classList.remove("hidden");
+          err++;
+        } else {
+          document.getElementById("textreq").classList.add("hidden");
+        }
+
+        if (!document.getElementById("checkbox").checked) {
+          document.getElementById("checkreq").classList.remove("hidden");
+          err++;
+        } else {
+          document.getElementById("checkreq").classList.add("hidden");
+        }
+
+        if (err !== 0) {
+          return;
+        } else {
+          document.getElementById("sent").classList.remove("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>
